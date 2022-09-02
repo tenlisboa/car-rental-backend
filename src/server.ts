@@ -1,8 +1,12 @@
+import "dotenv/config";
 import express from "express";
 import { router } from "./routes";
 import swaggerUI from "swagger-ui-express";
 
 import swaggerFile from "./swagger.json";
+import { connectDatabase } from "./database";
+
+connectDatabase();
 
 const app = express();
 
