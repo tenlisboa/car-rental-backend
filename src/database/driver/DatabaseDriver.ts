@@ -1,15 +1,15 @@
 import { DataSource, DataSourceOptions } from "typeorm";
-import { IConfig, IDatabaseDriver } from "./IDatabaseDriver";
+import { IDatabaseDriver } from "./IDatabaseDriver";
 
-class DatabaseDriver implements IDatabaseDriver {
-  config: IConfig;
+class DatabaseDriver implements IDatabaseDriver<DataSourceOptions> {
+  config: DataSourceOptions;
 
-  constructor(config: IConfig) {
+  constructor(config: DataSourceOptions) {
     this.config = config;
   }
 
   async connect(): Promise<DataSource> {
-    const dataSource = new DataSource(this.config as DataSourceOptions);
+    const dataSource = new DataSource(this.config);
 
     return await dataSource.initialize();
   }
