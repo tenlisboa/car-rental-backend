@@ -1,16 +1,15 @@
-import { DatabaseDriver } from "./driver/DatabaseDriver";
+import path from "path";
+import { DataSource } from "typeorm";
+const appDir = path.dirname(require.main!.filename);
 
-function connectDatabase() {
-  const driver = new DatabaseDriver({
-    type: process.env.DB_DRIVER as "postgres",
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT),
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-  });
+const AppDataSource = new DataSource({
+  type: (process.env.DB_DRIVER as "postgres") || "postgres",
+  host: process.env.DB_HOST || "localhost",
+  port: Number(process.env.DB_PORT) || 5432,
+  username: process.env.DB_USERNAME || "sample",
+  password: process.env.DB_PASSWORD || "longpassword",
+  database: process.env.DB_DATABASE || "rental",
+  migrations: [path.resolve(appDir, "src", "database", "migrations")],
+});
 
-  return driver.connect();
-}
-
-export { connectDatabase };
+export { AppDataSource };
