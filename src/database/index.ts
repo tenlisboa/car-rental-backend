@@ -1,6 +1,6 @@
-import path from "path";
 import { DataSource } from "typeorm";
-const appDir = path.dirname(require.main!.filename);
+import { Category } from "../modules/cars/entities/Category";
+import { CreateCategories1662203203498 } from "./migrations/1662203203498-CreateCategories";
 
 const AppDataSource = new DataSource({
   type: (process.env.DB_DRIVER as "postgres") || "postgres",
@@ -9,7 +9,8 @@ const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME || "sample",
   password: process.env.DB_PASSWORD || "longpassword",
   database: process.env.DB_DATABASE || "rental",
-  migrations: [path.resolve(appDir, "src", "database", "migrations")],
+  entities: [Category],
+  migrations: [CreateCategories1662203203498],
 });
 
 export { AppDataSource };
