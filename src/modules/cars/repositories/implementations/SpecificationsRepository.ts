@@ -20,13 +20,13 @@ class SpecificationsRepository implements ISpecificationsRepository {
     return SpecificationsRepository.INSTANCE;
   }
 
-  findByName(name: string): Specification {
+  async findByName(name: string): Promise<Specification> {
     const specification = this.specifications.find((s) => s.name === name);
 
     return specification!;
   }
 
-  create({ name, description }: ICreateSpecificationDTO): void {
+  async create({ name, description }: ICreateSpecificationDTO): Promise<void> {
     const specification = new Specification();
 
     Object.assign(specification, {
