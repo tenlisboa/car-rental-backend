@@ -1,10 +1,13 @@
 import "dotenv/config";
+import "reflect-metadata";
 import express from "express";
 import { router } from "./routes";
 import swaggerUI from "swagger-ui-express";
 
 import swaggerFile from "./swagger.json";
 import { AppDataSource } from "./database";
+
+import "./shared/container";
 
 AppDataSource.initialize().then(() => {
   const app = express();
