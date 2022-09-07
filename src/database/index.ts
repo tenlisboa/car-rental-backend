@@ -1,4 +1,5 @@
 import { DataSource } from "typeorm";
+import { User } from "../modules/accounts/entities/User";
 import { Category } from "../modules/cars/entities/Category";
 import { Specification } from "../modules/cars/entities/Specification";
 import { CreateCategories1662203203498 } from "./migrations/1662203203498-CreateCategories";
@@ -12,7 +13,7 @@ const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME || "sample",
   password: process.env.DB_PASSWORD || "longpassword",
   database: process.env.DB_DATABASE || "rental",
-  entities: [Category, Specification],
+  entities: [Category, Specification, User],
   migrations: [
     CreateCategories1662203203498,
     CreateSpecifications1662509109492,
