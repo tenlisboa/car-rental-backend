@@ -5,6 +5,7 @@ import { Specification } from "../modules/cars/entities/Specification";
 import { CreateCategories1662203203498 } from "./migrations/1662203203498-CreateCategories";
 import { CreateSpecifications1662509109492 } from "./migrations/1662509109492-CreateSpecifications";
 import { CreateUsers1662560238368 } from "./migrations/1662560238368-CreateUsers";
+import { AlterUserDeleteUsername1662834767452 } from "./migrations/1662834767452-AlterUserDeleteUsername";
 
 const AppDataSource = new DataSource({
   type: (process.env.DB_DRIVER as "postgres") || "postgres",
@@ -18,6 +19,7 @@ const AppDataSource = new DataSource({
     CreateCategories1662203203498,
     CreateSpecifications1662509109492,
     CreateUsers1662560238368,
+    AlterUserDeleteUsername1662834767452,
   ],
 });
 
